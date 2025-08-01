@@ -5,20 +5,64 @@ import pandas as pd
 
 st.set_page_config(layout="wide")  # Full width
 
-
+# Add moving sentences (marquee effect) at the very top
+st.markdown("""
+    <style>
+    .marquee-container {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        box-sizing: border-box;
+        background: #242424;
+        border-radius: 8px;
+        margin-bottom: 18px;
+        padding: 8px 0;
+    }
+    .marquee-text {
+        display: inline-block;
+        padding-left: 100%;
+        animation: marquee 18s linear infinite;
+        font-size: 20px;
+        color: #FFD700;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+    @keyframes marquee {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+    }
+    </style>
+    <div class="marquee-container">
+        <span class="marquee-text">
+            Movies tell stories with pictures and sound. &nbsp; 
+            They can be funny, sad, or exciting. &nbsp; 
+            People watch movies to relax or learn. &nbsp; 
+            Each movie has a title, actors, and a story. &nbsp; 
+            IMDB gives ratings to movies. &nbsp; 
+            Good movies stay in our minds for long. &nbsp; 
+            We can find similar movies using apps.
+        </span>
+    </div>
+""", unsafe_allow_html=True)
 
 st.markdown("""
     <style>
-    /* Global styles for the app background and text */
     body {
-        /* A dark gray or black background similar to the screenshot */
         background-color: #121212;
         color: #e0e0e0;
         font-family: 'Segoe UI', 'Roboto', sans-serif;
+        background-image: url('https://www.hollywoodreporter.com/wp-content/uploads/2014/09/interstellar_poster_0.jpg?w=1440&h=810&crop=1');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
     }
     .stApp {
-        background-color: #121212;
+        background-color: rgba(18, 18, 18, 0.85);
         color: #e0e0e0;
+        background-image: url('https://www.hollywoodreporter.com/wp-content/uploads/2014/09/interstellar_poster_0.jpg?w=1440&h=810&crop=1');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
     }
 
     /* Heading styles */
@@ -194,10 +238,23 @@ def recommend(movie):
     return results
 
 # UI Components
-st.markdown('<h1>🎬 Movie Recommender System</h1>', unsafe_allow_html=True)
+st.markdown("""
+    <div style="
+        color: black;
+        text-align: center;
+        font-size: 38px;
+        font-weight: bold;
+        margin-top: -10px;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 2;
+    ">
+        Movie Recommender System
+    </div>
+""", unsafe_allow_html=True)
 
 selected_movie = st.selectbox(
-    "🎥 Type or select a movie:",
+    " Type or select a movie:",
     movies['title'].values,
     key='dropdown',
     help="Choose a movie to get similar recommendations"
